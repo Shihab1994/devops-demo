@@ -21,4 +21,10 @@ class DevopsDemoApplicationTests {
 		ResponseEntity<String> response = restTemplate.getForEntity("/hello", String.class);
 		assertEquals("Hello from DevOps Demo!", response.getBody());
 	}
+
+	@Test
+	void testGreetEndpoint() {
+		ResponseEntity<String> response = restTemplate.getForEntity("/greet?name=Alice", String.class);
+		assertEquals("Hello, Alice!", response.getBody());
+	}
 }
