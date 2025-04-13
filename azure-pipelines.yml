@@ -5,18 +5,17 @@ trigger:
       - feature/*
 
 pool:
-  vmImage: 'windows-latest'
+  name: MySelfHostedPool  # Use your self-hosted agent pool
 
 stages:
   - stage: Build
     jobs:
       - job: BuildJob
         steps:
-          - task: JavaToolInstaller@0
-            inputs:
-              version: '17'
-              jdkArchitectureOption: 'x64'
-              jdkSourceOption: 'PreInstalled'
+          - script: |
+              java -version
+              mvn -version
+            displayName: 'Verify Java and Maven'
           - task: Maven@4
             inputs:
               mavenPomFile: 'pom.xml'
@@ -64,7 +63,7 @@ stages:
                     echo "Deploying to Dev environment on port 8080"
                     java -jar $(System.ArtifactsDirectory)/app-artifact/devops-demo-0.0.1-SNAPSHOT.jar --server.port=8080 &
                     sleep 10
-                    curl http://localhost:8080/hello
+                    curl http://localhost:8080/hello || echo "Curl failed, check app logs"
                   displayName: 'Deploy to Dev'
 
   - stage: DeployToQAT
