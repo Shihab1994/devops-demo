@@ -4,6 +4,9 @@ trigger:
       - main
       - feature/*
 
+variables:
+  - group: Sonar
+
 pool:
   name: MySelfHostedPool  # Use your self-hosted agent pool
 
@@ -26,7 +29,7 @@ stages:
               sonarQubeRunAnalysis: true
               sqMavenPluginVersionChoice: 'latest'
             env:
-              SONAR_TOKEN: $(SONAR_TOKEN)
+              SONAR_TOKEN: $(SONAR_TOKEN)  # Using the environment variable securely
           - task: PublishBuildArtifacts@1
             inputs:
               pathToPublish: 'target/devops-demo-0.0.1-SNAPSHOT.jar'
