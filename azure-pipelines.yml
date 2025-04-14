@@ -26,14 +26,11 @@ stages:
               publishJUnitResults: true
               testResultsFiles: '**/surefire-reports/TEST-*.xml'
               codeCoverageToolOption: 'JaCoCo'
-              sonarQubeRunAnalysis: true
-              sqMavenPluginVersionChoice: 'latest'
             env:
-              SONAR_TOKEN: $(SONAR_TOKEN)  # Using the environment variable securely
+              SONAR_TOKEN: $(SONAR_TOKEN)  # Optional, remove if not using Sonar at all
           - task: PublishBuildArtifacts@1
             inputs:
               pathToPublish: 'target/devops-demo-0.0.1-SNAPSHOT.jar'
               artifactName: 'app-artifact'
               publishLocation: 'Container'
 
-  # Rest of your stages...
