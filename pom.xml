@@ -47,10 +47,14 @@
 
 	<build>
 		<plugins>
+			<!-- Sonar plugin -->
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.sonarsource.scanner.maven</groupId>
+				<artifactId>sonar-maven-plugin</artifactId>
+				<version>3.9.0.2155</version> <!-- Ensure this is the latest compatible version -->
 			</plugin>
+
+			<!-- JaCoCo plugin -->
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
