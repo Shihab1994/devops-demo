@@ -57,8 +57,7 @@ stages:
 
           - script: |
               echo "Running the application on port 8085..."
-              start /B java -jar app-artifact/devops-demo-0.0.1-SNAPSHOT.jar --server.port=8085
-              timeout /T 10
+              java -jar $(Pipeline.Workspace)/app-artifact/devops-demo-0.0.1-SNAPSHOT.jar --server.port=8085
             displayName: 'Run app on port 8085'
 
           - script: |
